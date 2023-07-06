@@ -1,11 +1,15 @@
 <div class="app">
   <h1>Listado Peliculas</h1>
   <div class="search">
-    <input type="text" #search placeholder="Buscador de peliculas">
-    <img (click)="getMovies(search.value)" src="../../../assets/searach.svg" alt="search">
+    <input type="text"  #movieSearchInput  placeholder="Buscar peliculas">
+    <!-- <img (click)="getMovies(search.value)" src="../../../assets/searach.svg" alt="search"> -->
   </div>
-  <div class="container">
-    <app-card-movie *ngFor="let movie of movies" [movie]="movie"></app-card-movie>
+  <div *ngIf="movies.length > 0; else empty" class="container">
+    <app-card-movie *ngFor="let movie of movies" [movie]="movie">
+    </app-card-movie>
   </div>
 
+  <ng-template #empty class="empty">
+    <h3>No hay peliculas para mostrar</h3>
+  </ng-template>
 </div>
